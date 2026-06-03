@@ -120,9 +120,61 @@ html,body{font-family:'Inter',sans-serif;font-size:15px;color:var(--ink);backgro
 .flinks a{color:rgba(255,255,255,.45);text-decoration:none;cursor:pointer;}
 .flinks a:hover{color:var(--goldsf);}
 
+/* DASHBOARD PREVIEW BACKDROP (shown behind auth modals) */
+#dashPreviewBg{display:none;position:fixed;inset:0;z-index:999;overflow:hidden;}
+#dashPreviewBg.show{display:block;}
+.dpb-inner{position:absolute;inset:-30px;filter:blur(9px);transform:scale(1.04);pointer-events:none;user-select:none;overflow:hidden;}
+.dpb-overlay{position:absolute;inset:0;background:rgba(8,15,26,.62);}
+/* mini nav */
+.dpb-nav{background:var(--navy);padding:14px 28px;display:flex;align-items:center;justify-content:space-between;}
+.dpb-brand{display:flex;align-items:center;gap:10px;}
+.dpb-mark{font-family:'Fraunces',serif;font-size:22px;font-weight:600;color:var(--gold);}
+.dpb-div{width:1px;height:20px;background:var(--gold);opacity:.6;}
+.dpb-bname{font-family:'Fraunces',serif;font-size:14px;color:#fff;}
+.dpb-gbar{height:2px;background:var(--gold);}
+/* mini shell */
+.dpb-shell{display:grid;grid-template-columns:220px 1fr;height:calc(100vh - 60px);}
+/* mini sidebar */
+.dpb-sidebar{background:var(--navy);padding:18px 0;}
+.dpb-sbsec{font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.35);padding:0 20px;margin:16px 0 8px;font-weight:600;}
+.dpb-sbi{display:flex;align-items:center;gap:10px;padding:10px 20px;font-size:13px;color:rgba(255,255,255,.65);}
+.dpb-sbi.act{color:var(--gold);background:rgba(181,154,90,.1);border-left:3px solid var(--gold);}
+.dpb-sbi svg{width:15px;height:15px;flex-shrink:0;}
+/* mini main */
+.dpb-main{background:var(--paper2);padding:28px 32px;overflow:hidden;}
+.dpb-dhdr{margin-bottom:22px;padding-bottom:16px;border-bottom:1px solid var(--rule);}
+.dpb-dhdr h1{font-family:'Fraunces',serif;font-size:22px;color:var(--navy);font-weight:500;}
+.dpb-dhdr p{font-size:12px;color:var(--inkmute);margin-top:3px;}
+.dpb-sigcard{border:1px solid var(--rulestr);background:var(--paper);display:grid;grid-template-columns:repeat(4,1fr);margin-bottom:18px;}
+.dpb-sigcell{padding:20px 16px;border-right:1px solid var(--rule);text-align:center;}
+.dpb-sigcell:last-child{border-right:0;}
+.dpb-siglbl{font-size:9px;letter-spacing:.14em;color:var(--inkmute);text-transform:uppercase;margin-bottom:10px;}
+.dpb-sigscore{font-family:'Fraunces',serif;font-size:44px;color:var(--navy);font-weight:500;line-height:1;}
+.dpb-sigband{font-family:'Fraunces',serif;font-size:18px;font-weight:500;color:var(--amber);}
+.dpb-sigtrend{font-size:28px;color:var(--red);}
+.dpb-sigind{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--ink);}
+.dpb-sigind .dot{width:10px;height:10px;border-radius:50%;background:var(--greydot);}
+.dpb-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:14px;}
+.dpb-card{background:var(--paper);border:1px solid var(--rule);padding:14px 16px;}
+.dpb-card .lbl{font-size:9px;text-transform:uppercase;letter-spacing:.12em;color:var(--inkmute);margin-bottom:8px;}
+.dpb-card .val{font-family:'Fraunces',serif;font-size:26px;color:var(--navy);}
+.dpb-card.locked{background:var(--lockedbg);border:1px solid #dde2ea;filter:blur(4px);}
+.dpb-splitrow{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.dpb-panel{background:var(--paper);border:1px solid var(--rule);padding:18px 20px;filter:blur(4px);}
+.dpb-panel .pt{font-family:'Fraunces',serif;font-size:14px;color:var(--navy);margin-bottom:14px;}
+.dpb-bar-row{display:flex;gap:8px;align-items:center;margin-bottom:8px;font-size:11px;color:var(--inksoft);}
+.dpb-bar-row .btrack{flex:1;height:12px;background:var(--paper2);}
+.dpb-bar-row .bfill{height:100%;}
+.dpb-mvrow{display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid var(--rule);font-size:12px;}
+.dpb-mvrow .mvn{flex:1;color:var(--ink);}
+.dpb-mvrow .mvd{font-weight:600;}
+.dpb-mvrow .mvd.up{color:var(--green);}
+.dpb-mvrow .mvd.dn{color:var(--red);}
+
 /* MODAL */
 .mover{display:none;position:fixed;inset:0;z-index:1000;background:rgba(10,18,30,.65);backdrop-filter:blur(3px);align-items:center;justify-content:center;padding:20px;}
 .mover.open{display:flex;}
+.mover.has-preview-bg{backdrop-filter:none;background:rgba(4,10,18,.2);}
 .modal{background:var(--paper);max-width:480px;width:100%;padding:40px;position:relative;animation:su .25s ease;max-height:90vh;overflow-y:auto;}
 @keyframes su{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
 .mclose{position:absolute;top:16px;right:18px;background:none;border:0;font-size:20px;color:var(--inkmute);cursor:pointer;line-height:1;}
@@ -143,6 +195,7 @@ html,body{font-family:'Inter',sans-serif;font-size:15px;color:var(--ink);backgro
 .chki label{font-size:13px;color:var(--inksoft);line-height:1.45;cursor:pointer;}
 .chki label a{color:var(--gold);text-decoration:underline;}
 .reqstar{color:var(--red);}
+.field-error{display:block;font-size:11.5px;color:var(--red);margin-top:5px;min-height:16px;}
 .captcha{border:1.5px solid var(--rulestr);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;background:var(--paper2);}
 .capleft{display:flex;align-items:center;gap:12px;}
 .capleft input[type=checkbox]{width:20px;height:20px;accent-color:var(--navy);cursor:pointer;}
@@ -321,11 +374,51 @@ tr:last-child td{border-bottom:0;}
 .faqq .pm{font-size:20px;color:var(--gold);transition:transform .2s;line-height:1;}
 .faqi.open .faqq .pm{transform:rotate(45deg);}
 .faqa{max-height:0;overflow:hidden;transition:max-height .25s ease;padding:0 22px;}
-.faqi.open .faqa{max-height:280px;padding-bottom:20px;}
+.faqi.open .faqa{max-height:500px;padding-bottom:20px;}
 .faqa p{font-size:13.5px;color:var(--inksoft);line-height:1.65;}
 .faqa .lockmini2{color:var(--gold);font-weight:600;}
 
-/* placeholder content blocks */
+/* METHODOLOGY */
+.meth-wrap{max-width:900px;}
+.meth-intro{font-size:15px;color:var(--inksoft);line-height:1.75;margin-bottom:32px;max-width:780px;}
+.meth-section{margin-bottom:36px;}
+.meth-label{font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
+.meth-section h3{font-family:'Fraunces',serif;font-size:20px;color:var(--navy);font-weight:500;margin-bottom:14px;}
+.meth-section p{font-size:13.5px;color:var(--inksoft);line-height:1.7;margin-bottom:10px;}
+.meth-section p:last-child{margin-bottom:0;}
+.meth-cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.meth-card{background:var(--paper);border:1px solid var(--rule);border-left:3px solid var(--gold);padding:18px 20px;}
+.meth-card h4{font-size:13.5px;font-weight:700;color:var(--navy);margin-bottom:6px;}
+.meth-card p{font-size:13px;color:var(--inksoft);line-height:1.6;margin:0;}
+.meth-bands{display:grid;grid-template-columns:repeat(5,1fr);border:1px solid var(--rulestr);overflow:hidden;margin-top:4px;}
+.meth-band{padding:16px 14px;text-align:center;border-right:1px solid var(--rulestr);}
+.meth-band:last-child{border-right:0;}
+.meth-band .rng{font-size:11px;color:var(--inkmute);margin-bottom:6px;font-weight:500;}
+.meth-band .lbl{font-family:'Fraunces',serif;font-size:15px;font-weight:500;}
+.meth-band.ex .lbl{color:var(--green);}
+.meth-band.gd .lbl{color:#3a7a3a;}
+.meth-band.fa .lbl{color:var(--amber);}
+.meth-band.po .lbl{color:#b85c00;}
+.meth-band.vp .lbl{color:var(--red);}
+.meth-band.ex{background:#f2faf5;}
+.meth-band.gd{background:#f5faf5;}
+.meth-band.fa{background:#fdf7ec;}
+.meth-band.po{background:#fdf3ec;}
+.meth-band.vp{background:#fdf2f2;}
+.meth-principles{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:4px;}
+.meth-principle{background:var(--navy);color:#fff;padding:14px 16px;text-align:center;}
+.meth-principle .pi{font-family:'Fraunces',serif;font-size:15px;font-weight:500;color:var(--goldsf);}
+.meth-2col{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.meth-box{background:var(--paper);border:1px solid var(--rule);padding:20px 22px;}
+.meth-box h4{font-family:'Fraunces',serif;font-size:16px;color:var(--navy);font-weight:500;margin-bottom:10px;}
+.meth-box ul{list-style:none;display:flex;flex-direction:column;gap:6px;}
+.meth-box ul li{font-size:13px;color:var(--inksoft);padding-left:16px;position:relative;line-height:1.5;}
+.meth-box ul li::before{content:'–';position:absolute;left:0;color:var(--gold);}
+.meth-notice{background:var(--navy);color:rgba(255,255,255,.85);padding:22px 26px;margin-top:36px;max-width:900px;}
+.meth-notice h4{font-family:'Fraunces',serif;font-size:15px;color:var(--goldsf);font-weight:500;margin-bottom:8px;}
+.meth-notice p{font-size:13px;line-height:1.65;color:rgba(255,255,255,.75);}
+.meth-strapline{font-size:12px;font-style:italic;color:rgba(255,255,255,.5);margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,.1);}
+
 .phblock{background:var(--paper);border:1px solid var(--rule);padding:34px 38px;max-width:840px;}
 .phflag{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);border:1px dashed var(--gold);padding:6px 12px;margin-bottom:24px;}
 .phblock h2{font-family:'Fraunces',serif;font-size:26px;color:var(--navy);font-weight:500;margin-bottom:14px;}
@@ -723,7 +816,7 @@ tr:last-child td{border-bottom:0;}
           <div class="acctcard">
             <h3>Profile</h3>
             <div class="acctrow"><span class="k">Name</span><span class="v" id="acctName">Jane Smith</span></div>
-            <div class="acctrow"><span class="k">Email</span><span class="v" id="acctEmail"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="791318171c391a161409181700571a1614">[email&#160;protected]</a></span></div>
+            <div class="acctrow"><span class="k">Email</span><span class="v" id="acctEmail"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="751f141b1035161a1805141b0c5b161a18">[email&#160;protected]</a></span></div>
             <div class="acctrow"><span class="k">Member since</span><span class="v">June 2026</span></div>
           </div>
           <div class="acctcard">
@@ -744,12 +837,49 @@ tr:last-child td{border-bottom:0;}
       <section class="psection" id="ps-faq" data-screen-label="Portal · FAQ">
         <div class="dhdr"><div><h1>Frequently asked questions</h1><p>Everything you need to know about CTI, plans and your data.</p></div></div>
         <div class="faqwrap" id="faqList">
-          <div class="faqi"><div class="faqq" onclick="toggleFaq(this)">What is the Commercial Trust Index?<span class="pm">+</span></div><div class="faqa"><p>CTI is a structured, risk-based measure of commercial payment behaviour for UK companies, built from statutory payment reporting data. It produces a CTI score, a risk band, a trend indicator and a risk flag — using a transparent, rule-based methodology.</p></div></div>
-          <div class="faqi"><div class="faqq" onclick="toggleFaq(this)">What do I get on the free plan?<span class="pm">+</span></div><div class="faqa"><p>The free plan gives you the public CTI signal — score, risk band, trend and risk indicator — for any company in our data set, and lets you save 1 company to your watchlist. The full report, historical data and portfolio tools are <span class="lockmini2">paid features</span>.</p></div></div>
-          <div class="faqi"><div class="faqq" onclick="toggleFaq(this)">What's inside a full Company Report?<span class="pm">+</span></div><div class="faqa"><p>The Company Report is a six-page structured document: cover, executive summary, full pillar breakdown, trend &amp; movement, a red-flag section, and a methodology summary. It is generated automatically from the scoring data — no manual production.</p></div></div>
-          <div class="faqi"><div class="faqq" onclick="toggleFaq(this)">How do alerts work?<span class="pm">+</span></div><div class="faqa"><p>For subscribers, alerts fire on three events: a red flag being triggered, a CTI score changing by more than a set threshold, and a risk band changing. Alerts cover every company on your watchlist.</p></div></div>
-          <div class="faqi"><div class="faqq" onclick="toggleFaq(this)">Which companies are covered?<span class="pm">+</span></div><div class="faqa"><p>CTI currently covers UK companies required to report payment practices under statutory regulations — typically larger organisations. If a company isn't covered yet, you can nominate it and we'll prioritise new coverage.</p></div></div>
-          <div class="faqi"><div class="faqq" onclick="toggleFaq(this)">How is my data handled?<span class="pm">+</span></div><div class="faqa"><p>Your personal data is processed in line with UK GDPR. You control your marketing preferences and can withdraw consent at any time from your account settings.</p></div></div>
+
+          <div style="font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--inkmute);margin:0 0 12px;padding-bottom:8px;border-bottom:1px solid var(--rule);">Understanding CTI scores</div>
+
+          <div class="faqi"><div class="faqq" onclick="toggleFaq(this)">Why should I trust CTI?<span class="pm">+</span></div><div class="faqa"><p>CTI uses publicly reported payment data and an independent methodology. Companies cannot influence their score through applications, references, explanations or supporting statements.</p></div></div>
+
+          <div class="faqi"><div class="faqq" onclick="toggleFaq(this)">Why does this score matter?<span class="pm">+</span></div><div class="faqa"><p>The CTI Score transforms complex payment reporting data into a structured indicator of payment behaviour, helping users identify trends, consistency and performance over time.</p></div></div>
+
+          <div class="faqi"><div class="faqq" onclick="toggleFaq(this)">What does a CTI score mean?<span class="pm">+</span></div><div class="faqa"><p>CTI helps users understand what reported payment behaviour may indicate about consistency, reliability and performance. It is designed to provide additional insight that can support procurement, due diligence and business decision-making.</p></div></div>
+
+          <div class="faqi"><div class="faqq" onclick="toggleFaq(this)">What action should I take based on a score?<span class="pm">+</span></div><div class="faqa"><p>CTI should be used as an additional source of information alongside broader due diligence and decision-making processes.</p></div></div>
+
+          <div class="faqi"><div class="faqq" onclick="toggleFaq(this)">Is this company improving or deteriorating?<span class="pm">+</span></div><div class="faqa"><p>Trend indicators compare reporting periods and highlight whether payment behaviour appears to be improving, stable or deteriorating over time.</p></div></div>
+
+          <div class="faqi"><div class="faqq" onclick="toggleFaq(this)">How does this compare to similar businesses?<span class="pm">+</span></div><div class="faqa"><p>Where available, CTI benchmarks performance against sector averages and peer groups to provide additional context.</p></div></div>
+
+          <div class="faqi"><div class="faqq" onclick="toggleFaq(this)">What does a good CTI score look like?<span class="pm">+</span></div><div class="faqa"><p>Higher scores generally indicate stronger payment performance, greater consistency and fewer negative behavioural indicators.</p></div></div>
+
+          <div class="faqi"><div class="faqq" onclick="toggleFaq(this)">Why has a score changed?<span class="pm">+</span></div><div class="faqa"><p>Scores may change due to:</p><ul style="margin:10px 0 4px 18px;display:flex;flex-direction:column;gap:5px;font-size:13.5px;color:var(--inksoft);line-height:1.55;"><li>New reporting periods becoming available</li><li>Changes in payment performance</li><li>Movement in behavioural indicators</li><li>Methodology enhancements</li></ul></div></div>
+
+          <div class="faqi"><div class="faqq" onclick="toggleFaq(this)">How recent is the data?<span class="pm">+</span></div><div class="faqa"><p>CTI uses the most recent publicly reported payment data available and displays the reporting period used within the platform.</p></div></div>
+
+          <div class="faqi"><div class="faqq" onclick="toggleFaq(this)">Can companies influence their score?<span class="pm">+</span></div><div class="faqa"><p>No. Scores are generated using publicly reported data and CTI methodology. Companies cannot alter their score through applications, references or supporting evidence.</p></div></div>
+
+          <div class="faqi"><div class="faqq" onclick="toggleFaq(this)">What are the limitations of the data?<span class="pm">+</span></div><div class="faqa"><p>CTI relies on publicly reported information and can only assess what has been disclosed through payment reporting requirements. It should therefore be used alongside wider due diligence and business judgement.</p></div></div>
+
+          <div style="font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--inkmute);margin:28px 0 12px;padding-bottom:8px;border-bottom:1px solid var(--rule);">General questions</div>
+
+          <div class="faqi"><div class="faqq" onclick="toggleFaq(this)">What is CTI?<span class="pm">+</span></div><div class="faqa"><p>Commercial Trust Index (CTI) is a behavioural intelligence platform that transforms publicly reported payment data into structured insight, helping organisations better understand payment performance and make more informed decisions.</p></div></div>
+
+          <div class="faqi"><div class="faqq" onclick="toggleFaq(this)">Is CTI a credit score?<span class="pm">+</span></div><div class="faqa"><p>No. CTI is not a credit score, credit rating or financial solvency assessment.</p></div></div>
+
+          <div class="faqi"><div class="faqq" onclick="toggleFaq(this)">Does CTI predict future payment behaviour?<span class="pm">+</span></div><div class="faqa"><p>No. CTI provides insight into historical payment behaviour and trends based on reported data.</p></div></div>
+
+          <div class="faqi"><div class="faqq" onclick="toggleFaq(this)">Where does the data come from?<span class="pm">+</span></div><div class="faqa"><p>CTI uses publicly reported UK payment practices and performance data.</p></div></div>
+
+          <div class="faqi"><div class="faqq" onclick="toggleFaq(this)">Who is CTI for?<span class="pm">+</span></div><div class="faqa"><p>CTI is designed for:</p><ul style="margin:10px 0 4px 18px;display:flex;flex-direction:column;gap:5px;font-size:13.5px;color:var(--inksoft);line-height:1.55;"><li>Suppliers &amp; contractors</li><li>Developers</li><li>Procurement teams</li><li>Consultants</li><li>Lenders &amp; insurers</li><li>Industry stakeholders</li></ul></div></div>
+
+          <div class="faqi"><div class="faqq" onclick="toggleFaq(this)">How is CTI different from PaymentCheck?<span class="pm">+</span></div><div class="faqa"><p>PaymentCheck primarily presents payment reporting information and scoring. CTI focuses on behavioural insight, trend analysis, benchmarking and interpretation, helping users understand what payment behaviour may indicate over time.</p></div></div>
+
+          <div class="faqi"><div class="faqq" onclick="toggleFaq(this)">How is CTI different from the Fair Payment Code?<span class="pm">+</span></div><div class="faqa"><p>The Fair Payment Code assesses commitment to payment standards and principles. CTI assesses observable payment behaviour using publicly reported data. The two approaches are complementary and provide different perspectives.</p></div></div>
+
+          <div class="faqi"><div class="faqq" onclick="toggleFaq(this)">Will CTI expand beyond construction?<span class="pm">+</span></div><div class="faqa"><p>Yes. Construction is the initial launch sector, but the longer-term vision is to create a scalable Commercial Trust Index that can be applied across multiple industries.</p></div></div>
+
         </div>
         <div class="upstrip" style="max-width:780px;"><div class="ut"><h4>Still have a question?</h4><p>Ask the CTI Assistant in the bottom-right corner any time.</p></div><button onclick="openChat()">Ask the assistant</button></div>
       </section>
@@ -771,20 +901,120 @@ tr:last-child td{border-bottom:0;}
         </div>
       </section>
 
-      <!-- ===== METHODOLOGY (placeholder) ===== -->
+      <!-- ===== METHODOLOGY ===== -->
       <section class="psection" id="ps-methodology" data-screen-label="Portal · Methodology">
-        <div class="dhdr"><div><h1>Methodology</h1><p>How the CTI score is built — version CTI v1.5.</p></div></div>
-        <div class="phblock">
-          <div class="phflag"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v12H7l-3 3z"/></svg>Placeholder &mdash; methodology detail to be supplied</div>
-          <h2>A transparent, rule-based score</h2>
-          <p class="phdim">[Placeholder — methodology overview.] CTI converts statutory payment reporting data into a single, comparable score using a fixed, version-controlled set of rules. No subjective opinion is applied.</p>
-          <p class="phdim">[Placeholder — scoring inputs and pillars.] Describe the pillars, weightings, thresholds and how the risk band and risk indicator are derived from the underlying score.</p>
-          <div class="phgrid">
-            <div class="phcard"><div class="pn">01</div><h4>Data inputs</h4><p class="phdim">[Placeholder] Statutory payment practice reporting data.</p></div>
-            <div class="phcard"><div class="pn">02</div><h4>Scoring pillars</h4><p class="phdim">[Placeholder] The pillars and their relative weightings.</p></div>
-            <div class="phcard"><div class="pn">03</div><h4>Bands &amp; thresholds</h4><p class="phdim">[Placeholder] How scores map to Low / Moderate / Elevated bands.</p></div>
-            <div class="phcard"><div class="pn">04</div><h4>Versioning</h4><p class="phdim">[Placeholder] Why the methodology is version-controlled (CTI v1.5).</p></div>
+        <div class="dhdr"><div><h1>Methodology &amp; Scoring Overview</h1><p>How the CTI score is built and what it measures.</p></div></div>
+        <div class="meth-wrap">
+
+          <p class="meth-intro">The Commercial Trust Index (CTI) is an independent, data-driven measure of commercial payment behaviour within the UK business sector. Rather than focusing on policies, commitments, memberships or certifications, CTI assesses observable behaviour using objective data published under statutory reporting requirements.</p>
+
+          <!-- Data Sources -->
+          <div class="meth-section">
+            <div class="meth-label">Data sources</div>
+            <div class="meth-2col">
+              <div class="meth-box">
+                <h4>What we use</h4>
+                <ul>
+                  <li>UK Government Payment Practices Reporting data <em style="color:var(--green);font-weight:600;">(current model)</em></li>
+                  <li>Statutory corporate filings <em style="color:var(--inkmute);">(future models)</em></li>
+                  <li>Other relevant public records where applicable <em style="color:var(--inkmute);">(future models)</em></li>
+                </ul>
+              </div>
+              <div class="meth-box" style="background:var(--paper2);">
+                <h4>What we don&rsquo;t use</h4>
+                <ul>
+                  <li>Surveys or self-assessments</li>
+                  <li>Confidential information</li>
+                  <li>Applications, references or supporting statements from rated companies</li>
+                </ul>
+              </div>
+            </div>
           </div>
+
+          <!-- Four Assessment Areas -->
+          <div class="meth-section">
+            <div class="meth-label">What CTI measures</div>
+            <p style="font-size:13.5px;color:var(--inksoft);line-height:1.65;margin-bottom:14px;">CTI evaluates indicators grouped into four core assessment areas, providing a broader picture than any single payment statistic alone.</p>
+            <div class="meth-cards">
+              <div class="meth-card"><h4>Payment Behaviour</h4><p>Measures how promptly organisations pay suppliers and how consistently payments are made within recognised payment periods.</p></div>
+              <div class="meth-card"><h4>Reporting &amp; Governance Signals</h4><p>Assesses the quality, consistency and completeness of publicly reported information.</p></div>
+              <div class="meth-card"><h4>Payment Friction Indicators</h4><p>Considers signals that may indicate payment delays, disputes or payments occurring outside agreed terms.</p></div>
+              <div class="meth-card"><h4>Trend &amp; Stability Analysis</h4><p>Evaluates whether payment performance is improving, deteriorating or remaining consistent over time.</p></div>
+            </div>
+          </div>
+
+          <!-- Score Bands -->
+          <div class="meth-section">
+            <div class="meth-label">Score bands</div>
+            <div class="meth-bands">
+              <div class="meth-band ex"><div class="rng">85 – 100</div><div class="lbl">Excellent</div></div>
+              <div class="meth-band gd"><div class="rng">70 – 84</div><div class="lbl">Good</div></div>
+              <div class="meth-band fa"><div class="rng">55 – 69</div><div class="lbl">Fair</div></div>
+              <div class="meth-band po"><div class="rng">40 – 54</div><div class="lbl">Poor</div></div>
+              <div class="meth-band vp"><div class="rng">Below 40</div><div class="lbl">Very Poor</div></div>
+            </div>
+            <div class="meth-2col" style="margin-top:12px;">
+              <div class="meth-box">
+                <h4>Higher scores indicate</h4>
+                <ul><li>Stronger payment performance</li><li>More consistent payment behaviour</li><li>Greater stability over time</li><li>Fewer indicators of payment friction</li></ul>
+              </div>
+              <div class="meth-box">
+                <h4>Lower scores may indicate</h4>
+                <ul><li>Slower payment practices</li><li>Greater variability in behaviour</li><li>Deteriorating trends</li><li>Increased payment friction signals</li></ul>
+                <p style="font-size:11.5px;color:var(--inkmute);margin-top:10px;padding-top:10px;border-top:1px solid var(--rule);">A lower score does not imply financial distress, insolvency risk or future business performance.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Rolling Index -->
+          <div class="meth-section">
+            <div class="meth-label">A behavioural index, not a snapshot</div>
+            <div class="meth-box">
+              <p style="font-size:13.5px;color:var(--inksoft);line-height:1.7;margin:0;">CTI is designed as a rolling index. Rather than relying on a single reporting period, the methodology considers recent reporting history to provide a more balanced and representative assessment of behaviour. This approach helps reduce the impact of short-term fluctuations and rewards sustained performance over time.</p>
+            </div>
+          </div>
+
+          <!-- Core Principles -->
+          <div class="meth-section">
+            <div class="meth-label">Core principles</div>
+            <div class="meth-principles">
+              <div class="meth-principle"><div class="pi">Objectivity</div></div>
+              <div class="meth-principle"><div class="pi">Consistency</div></div>
+              <div class="meth-principle"><div class="pi">Transparency</div></div>
+              <div class="meth-principle"><div class="pi">Independence</div></div>
+              <div class="meth-principle"><div class="pi">Comparability</div></div>
+            </div>
+            <p style="font-size:12.5px;color:var(--inkmute);margin-top:10px;line-height:1.6;">All organisations are assessed using the same methodology and data standards. CTI does not accept payment in exchange for altering, improving, suppressing or removing scores.</p>
+          </div>
+
+          <!-- How it can be used -->
+          <div class="meth-section">
+            <div class="meth-label">How CTI can be used</div>
+            <div class="meth-2col">
+              <div class="meth-box">
+                <h4>CTI helps organisations</h4>
+                <ul>
+                  <li>Compare payment behaviour across companies</li>
+                  <li>Identify differences in supplier payment performance</li>
+                  <li>Support procurement and supply chain assessments</li>
+                  <li>Monitor behavioural trends over time</li>
+                  <li>Improve transparency in commercial decision-making</li>
+                </ul>
+              </div>
+              <div class="meth-box" style="background:var(--paper2);">
+                <h4>Methodology governance</h4>
+                <p style="font-size:13px;color:var(--inksoft);line-height:1.65;margin:0;">CTI methodologies are version controlled and subject to periodic review. Changes are documented and published through formal version updates to maintain consistency and comparability over time.</p>
+                <p style="font-size:12px;color:var(--inkmute);margin-top:10px;line-height:1.55;">To preserve the integrity of the index and prevent manipulation, detailed scoring calculations, weighting structure, calibration process and risk triggers remain proprietary.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="meth-notice">
+            <h4>Important information</h4>
+            <p>CTI is not a credit rating, financial assessment, certification, accreditation or recommendation. It is an independent, data-driven measure of observed commercial payment behaviour, designed to support transparency and informed decision-making. Users should consider CTI alongside other relevant information when making commercial, procurement or business decisions.</p>
+            <p class="meth-strapline">CTI measures observed commercial behaviour using publicly available data. It does not assess opinions, memberships, certifications or future outcomes.</p>
+          </div>
+
         </div>
       </section>
 
@@ -836,7 +1066,7 @@ tr:last-child td{border-bottom:0;}
       <div class="field"><label>First name</label><input type="text" id="regFirst" placeholder="e.g. Jane"/></div>
       <div class="field"><label>Last name</label><input type="text" id="regLast" placeholder="e.g. Smith"/></div>
     </div>
-    <div class="field"><label>Email address</label><input type="email" id="regEmail" placeholder="you@company.com"/></div>
+    <div class="field"><label>Email address</label><input type="email" id="regEmail" placeholder="you@company.com" oninput="clearFieldError('regEmail')"/><span class="field-error" id="regEmailErr"></span></div>
     <div class="field"><label>Password</label><input type="password" placeholder="Min. 8 characters"/></div>
 
     <div class="chkgrp">
@@ -864,7 +1094,7 @@ tr:last-child td{border-bottom:0;}
     <button class="mclose" onclick="closeM('m-login')">&#10005;</button>
     <h2>Welcome back</h2>
     <p class="msub">Sign in to access your free signal and saved companies.</p>
-    <div class="field"><label>Email address</label><input type="email" placeholder="you@company.com"/></div>
+    <div class="field"><label>Email address</label><input type="email" id="loginEmail" placeholder="you@company.com" oninput="clearFieldError('loginEmail')"/><span class="field-error" id="loginEmailErr"></span></div>
     <div class="field"><label>Password</label><input type="password" placeholder="Your password"/></div>
     <button class="btnp" style="margin-bottom:12px;" onclick="doLogin()">Sign in</button>
     <button class="btns" onclick="doLogin()">Continue with Google</button>
@@ -955,11 +1185,23 @@ tr:last-child td{border-bottom:0;}
 <!-- MODAL: METHODOLOGY (public placeholder) -->
 <!-- ======================================================= -->
 <div class="mover" id="m-methodology">
-  <div class="modal">
+  <div class="modal" style="max-width:560px;">
     <button class="mclose" onclick="closeM('m-methodology')">&#10005;</button>
-    <div class="phflag"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v12H7l-3 3z"/></svg>Placeholder</div>
     <h2>Methodology</h2>
-    <p class="msub phdim">[Placeholder — methodology detail to be supplied.] CTI converts statutory payment reporting data into a transparent, version-controlled score (CTI v1.5). Replace this with the pillar, threshold and weighting detail.</p>
+    <p class="msub">An independent, data-driven measure of commercial payment behaviour.</p>
+    <p style="font-size:13.5px;color:var(--inksoft);line-height:1.7;margin-bottom:18px;">CTI assesses observable behaviour using objective data published under UK statutory reporting requirements — not policies, commitments or certifications.</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:18px;">
+      <div style="background:var(--paper2);border:1px solid var(--rule);border-left:3px solid var(--gold);padding:12px 14px;"><div style="font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--inkmute);margin-bottom:4px;">Assessment areas</div><div style="font-size:12.5px;color:var(--ink);line-height:1.6;">Payment behaviour<br/>Reporting &amp; governance<br/>Payment friction<br/>Trend &amp; stability</div></div>
+      <div style="background:var(--paper2);border:1px solid var(--rule);border-left:3px solid var(--gold);padding:12px 14px;"><div style="font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--inkmute);margin-bottom:4px;">Core principles</div><div style="font-size:12.5px;color:var(--ink);line-height:1.6;">Objectivity &middot; Consistency<br/>Transparency<br/>Independence<br/>Comparability</div></div>
+    </div>
+    <div style="border:1px solid var(--rulestr);display:grid;grid-template-columns:repeat(5,1fr);margin-bottom:18px;font-size:11.5px;text-align:center;">
+      <div style="padding:10px 6px;border-right:1px solid var(--rulestr);background:#f2faf5;"><div style="color:var(--inkmute);font-size:10px;margin-bottom:3px;">85–100</div><div style="font-family:'Fraunces',serif;color:var(--green);font-weight:500;">Excellent</div></div>
+      <div style="padding:10px 6px;border-right:1px solid var(--rulestr);background:#f5faf5;"><div style="color:var(--inkmute);font-size:10px;margin-bottom:3px;">70–84</div><div style="font-family:'Fraunces',serif;color:#3a7a3a;font-weight:500;">Good</div></div>
+      <div style="padding:10px 6px;border-right:1px solid var(--rulestr);background:#fdf7ec;"><div style="color:var(--inkmute);font-size:10px;margin-bottom:3px;">55–69</div><div style="font-family:'Fraunces',serif;color:var(--amber);font-weight:500;">Fair</div></div>
+      <div style="padding:10px 6px;border-right:1px solid var(--rulestr);background:#fdf3ec;"><div style="color:var(--inkmute);font-size:10px;margin-bottom:3px;">40–54</div><div style="font-family:'Fraunces',serif;color:#b85c00;font-weight:500;">Poor</div></div>
+      <div style="padding:10px 6px;background:#fdf2f2;"><div style="color:var(--inkmute);font-size:10px;margin-bottom:3px;">&lt;40</div><div style="font-family:'Fraunces',serif;color:var(--red);font-weight:500;">Very Poor</div></div>
+    </div>
+    <p style="font-size:12px;color:var(--inkmute);line-height:1.6;margin-bottom:18px;">CTI is not a credit rating, financial assessment or recommendation. It should be used alongside other relevant information when making commercial decisions.</p>
     <button class="btns" onclick="closeM('m-methodology')">Close</button>
   </div>
 </div>
@@ -993,6 +1235,75 @@ tr:last-child td{border-bottom:0;}
   </div>
 </div>
 
+<!-- DASHBOARD PREVIEW BACKDROP -->
+<div id="dashPreviewBg">
+  <div class="dpb-inner">
+    <div class="dpb-nav">
+      <div class="dpb-brand"><div class="dpb-mark">CTI</div><div class="dpb-div"></div><div class="dpb-bname">Commercial Trust Index</div></div>
+      <div style="display:flex;align-items:center;gap:14px;">
+        <span style="font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;border:1px solid var(--goldsf);color:var(--goldsf);">Free plan</span>
+        <div style="background:var(--gold);color:var(--navy);border:0;padding:7px 14px;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;">Upgrade</div>
+        <div style="display:flex;align-items:center;gap:8px;color:#fff;font-size:12px;">Jane Smith<div style="width:28px;height:28px;border-radius:50%;background:var(--gold);color:var(--navy);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;font-family:'Fraunces',serif;">J</div></div>
+      </div>
+    </div>
+    <div class="dpb-gbar"></div>
+    <div class="dpb-shell">
+      <div class="dpb-sidebar">
+        <div class="dpb-sbsec">Your free access</div>
+        <div class="dpb-sbi act"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2h-4v-7h-6v7H5a2 2 0 0 1-2-2z"/></svg>Dashboard</div>
+        <div class="dpb-sbi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>Company Search</div>
+        <div class="dpb-sbi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l3 7h7l-6 4 2 8-6-5-6 5 2-8-6-4h7z"/></svg>Watchlist</div>
+        <div class="dpb-sbi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/></svg>Account</div>
+        <div class="dpb-sbsec">Subscriber features</div>
+        <div class="dpb-sbi" style="color:rgba(255,255,255,.35);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="3" width="14" height="18"/><path d="M9 8h6M9 12h6M9 16h4"/></svg>Full Reports</div>
+        <div class="dpb-sbi" style="color:rgba(255,255,255,.35);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>Portfolio Analytics</div>
+        <div class="dpb-sbi" style="color:rgba(255,255,255,.35);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10 21a2 2 0 0 0 4 0"/></svg>Alerts &amp; Monitoring</div>
+        <div class="dpb-sbsec">Resources</div>
+        <div class="dpb-sbi" style="color:rgba(255,255,255,.5);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 4.5 1.5c0 1.5-2 2-2 3"/><path d="M12 17h.01"/></svg>FAQ</div>
+        <div class="dpb-sbi" style="color:rgba(255,255,255,.5);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>About Us</div>
+      </div>
+      <div class="dpb-main">
+        <div class="dpb-dhdr"><h1>Welcome back, Jane</h1><p>Here's the free signal for your saved company.</p></div>
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;">
+          <div style="width:40px;height:40px;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-size:16px;font-weight:600;">A</div>
+          <div><div style="font-family:'Fraunces',serif;font-size:18px;color:var(--navy);font-weight:500;">ABC Holdings Ltd</div><div style="font-size:11px;color:var(--inkmute);">Company No. 01234567 · Apr–Jun 2024 · CTI v1.5</div></div>
+        </div>
+        <div class="dpb-sigcard">
+          <div class="dpb-sigcell"><div class="dpb-siglbl">CTI Score</div><div class="dpb-sigscore">72</div></div>
+          <div class="dpb-sigcell"><div class="dpb-siglbl">Risk Band</div><div class="dpb-sigband">Moderate</div></div>
+          <div class="dpb-sigcell"><div class="dpb-siglbl">Trend</div><div class="dpb-sigtrend">↓</div></div>
+          <div class="dpb-sigcell"><div class="dpb-siglbl">Risk Indicator</div><div class="dpb-sigind"><span class="dot"></span>None</div></div>
+        </div>
+        <div style="font-size:11px;color:var(--inkmute);margin-bottom:20px;display:flex;align-items:center;gap:5px;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>Included in your free plan — the public CTI signal for 1 company.</div>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;"><span style="font-family:'Fraunces',serif;font-size:15px;color:var(--navy);">Unlock the full picture</span><span style="font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);border:1px solid var(--gold);padding:2px 8px;">🔒 Subscriber</span><span style="flex:1;height:1px;background:var(--rule);display:block;"></span></div>
+        <div class="dpb-grid">
+          <div class="dpb-card"><div class="lbl">Companies Monitored</div><div class="val">1</div></div>
+          <div class="dpb-card locked"><div class="lbl">Red Indicators</div><div class="val" style="color:var(--red);">3</div></div>
+          <div class="dpb-card locked"><div class="lbl">Reports Generated</div><div class="val">15</div></div>
+          <div class="dpb-card locked"><div class="lbl">Active Alerts</div><div class="val">7</div></div>
+        </div>
+        <div class="dpb-splitrow">
+          <div class="dpb-panel">
+            <div class="pt">Portfolio CTI Distribution</div>
+            <div class="dpb-bar-row"><span style="width:60px;">Excellent</span><div class="btrack"><div class="bfill" style="width:33%;background:var(--green);"></div></div><span>8</span></div>
+            <div class="dpb-bar-row"><span style="width:60px;">Fair</span><div class="btrack"><div class="bfill" style="width:42%;background:var(--gold);"></div></div><span>10</span></div>
+            <div class="dpb-bar-row"><span style="width:60px;">Poor</span><div class="btrack"><div class="bfill" style="width:17%;background:var(--amber);"></div></div><span>4</span></div>
+            <div class="dpb-bar-row"><span style="width:60px;">Very Poor</span><div class="btrack"><div class="bfill" style="width:8%;background:var(--red);"></div></div><span>2</span></div>
+          </div>
+          <div class="dpb-panel">
+            <div class="pt">Largest Score Movements</div>
+            <div class="dpb-mvrow"><div class="mvn">DEF Developments Ltd</div><div class="mvd dn">↓ 18</div></div>
+            <div class="dpb-mvrow"><div class="mvn">GHI Build Group Ltd</div><div class="mvd up">↑ 12</div></div>
+            <div class="dpb-mvrow"><div class="mvn">JKL Contracting Ltd</div><div class="mvd dn">↓ 9</div></div>
+            <div class="dpb-mvrow"><div class="mvn">MNO Structures Ltd</div><div class="mvd up">↑ 7</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="dpb-overlay"></div>
+</div>
+
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 const S = { loggedIn:false, viewed:0, FREE:1, name:'Jane Smith' };
 const known = ['abc','tesco','sainsbury','bt ','balfour','carillion','interserve','hsbc','lloyds','barclays','unilever','vodafone','rolls-royce','bae','astrazeneca'];
@@ -1005,8 +1316,26 @@ function showView(n){
   updateLabel();
   window.scrollTo({top:0,behavior:'instant'});
 }
-function openM(id){document.getElementById(id).classList.add('open');}
-function closeM(id){document.getElementById(id).classList.remove('open');}
+const AUTH_MODALS = ['m-login','m-register','m-searchgate'];
+function openM(id){
+  const el=document.getElementById(id);
+  if(!el)return;
+  el.classList.add('open');
+  if(AUTH_MODALS.includes(id)){
+    document.getElementById('dashPreviewBg').classList.add('show');
+    el.classList.add('has-preview-bg');
+  }
+}
+function closeM(id){
+  const el=document.getElementById(id);
+  if(!el)return;
+  el.classList.remove('open');
+  el.classList.remove('has-preview-bg');
+  // hide backdrop only if no other auth modal is still open
+  if(AUTH_MODALS.every(m=>!document.getElementById(m)?.classList.contains('open'))){
+    document.getElementById('dashPreviewBg').classList.remove('show');
+  }
+}
 function swapM(a,b){closeM(a);setTimeout(()=>openM(b),150);}
 
 /* ----- search (public) ----- */
@@ -1058,16 +1387,36 @@ function enterPortal(){
   document.getElementById('acctName').textContent=S.name;
   showPanel('dashboard');
 }
+function isValidEmail(v){
+  return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);
+}
+function clearFieldError(id){
+  const el=document.getElementById(id);
+  if(el){el.style.borderColor='';}
+  const err=document.getElementById(id+'Err');
+  if(err)err.textContent='';
+}
+function showFieldError(id,msg){
+  const el=document.getElementById(id);
+  if(el)el.style.borderColor='var(--red)';
+  const err=document.getElementById(id+'Err');
+  if(err)err.textContent=msg;
+}
 function doRegister(){
   const f=document.getElementById('regFirst').value.trim();
   const l=document.getElementById('regLast').value.trim();
   const e=document.getElementById('regEmail').value.trim();
+  if(!e){showFieldError('regEmail','Please enter your email address.');return;}
+  if(!isValidEmail(e)){showFieldError('regEmail','Please enter a valid email address (e.g. you@company.com).');return;}
   if(f||l)S.name=((f||'Jane')+' '+(l||'Smith')).trim();
-  if(e)document.getElementById('acctEmail').textContent=e;
+  document.getElementById('acctEmail').textContent=e;
   closeM('m-register');
   enterPortal();
 }
 function doLogin(){
+  const e=document.getElementById('loginEmail').value.trim();
+  if(!e){showFieldError('loginEmail','Please enter your email address.');return;}
+  if(!isValidEmail(e)){showFieldError('loginEmail','Please enter a valid email address (e.g. you@company.com).');return;}
   closeM('m-login');
   enterPortal();
 }
@@ -1148,7 +1497,7 @@ function chatSend(){
   botReply(answerFor(v));
 }
 
-document.querySelectorAll('.mover').forEach(o=>o.addEventListener('click',e=>{if(e.target===o)o.classList.remove('open');}));
+document.querySelectorAll('.mover').forEach(o=>o.addEventListener('click',e=>{if(e.target===o)closeM(o.id);}));
 updateLabel();
 </script>
 </body>
