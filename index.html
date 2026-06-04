@@ -767,6 +767,19 @@ tr:last-child td{border-bottom:0;}
         </div>
 
         <div id="portalSearchResult" style="margin-top:30px;display:none;">
+          <!-- NO RESULTS STATE -->
+          <div id="portalNoResult" style="display:none;padding:32px 0;text-align:center;">
+            <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="var(--rulestr)" stroke-width="1.5" style="margin-bottom:16px;"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/><path d="M8 11h6M11 8v6" stroke="var(--inkmute)"/></svg>
+            <h3 style="font-family:'Fraunces',serif;font-size:18px;font-weight:500;color:var(--navy);margin-bottom:8px;">No results for &ldquo;<span id="portalNrQuery"></span>&rdquo;</h3>
+            <p style="font-size:13.5px;color:var(--inksoft);max-width:480px;margin:0 auto 22px;line-height:1.6;">We couldn't find this company in our data set. CTI currently covers UK companies required to report payment practices under statutory regulations — typically larger organisations.</p>
+            <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+              <button class="nrbtn pr" onclick="openM('m-nominate')">Nominate this company</button>
+              <button class="nrbtn sc" onclick="document.getElementById('portalSearch').value='';document.getElementById('portalSearchResult').style.display='none';">Clear search</button>
+            </div>
+            <p style="font-size:12px;color:var(--inkmute);margin-top:16px;">Nominating helps us prioritise new coverage. If multiple users nominate the same company, we may reach out to them directly.</p>
+          </div>
+          <!-- HIT RESULT STATE -->
+          <div id="portalHitResult">
           <div class="cohead">
             <div class="coico" id="srIco">A</div>
             <div><h3 id="srCo">ABC Holdings Ltd</h3><div class="cometa">Company No. <span id="srNum">01234567</span><span class="dot">&middot;</span>Apr&ndash;Jun 2024<span class="dot">&middot;</span>CTI v1.5</div></div>
@@ -794,11 +807,9 @@ tr:last-child td{border-bottom:0;}
               <p>Pillar breakdown, historical scores and red-flag analysis — generated instantly.</p>
               <button class="lockcta" onclick="event.stopPropagation();openM('m-report')">Purchase report &mdash; &pound;79</button>
             </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ===== WATCHLIST ===== -->
+          </div><!-- /portalHitResult -->
+        </div><!-- /portalSearchResult -->
+      </section> -->
       <section class="psection" id="ps-watchlist" data-screen-label="Portal · Watchlist">
         <div class="dhdr"><div><h1>Watchlist</h1><p>Your free plan includes 1 monitored company.</p></div><div class="dchip">1 / 1 used</div></div>
         <div class="panel">
@@ -838,7 +849,7 @@ tr:last-child td{border-bottom:0;}
           <div class="acctcard">
             <h3>Profile</h3>
             <div class="acctrow"><span class="k">Name</span><span class="v" id="acctName">Jane Smith</span></div>
-            <div class="acctrow"><span class="k">Email</span><span class="v" id="acctEmail"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="503a313e3510333f3d20313e297e333f3d">[email&#160;protected]</a></span></div>
+            <div class="acctrow"><span class="k">Email</span><span class="v" id="acctEmail"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="86ece7e8e3c6e5e9ebf6e7e8ffa8e5e9eb">[email&#160;protected]</a></span></div>
             <div class="acctrow"><span class="k">Member since</span><span class="v">June 2026</span></div>
           </div>
           <div class="acctcard">
@@ -1148,11 +1159,11 @@ tr:last-child td{border-bottom:0;}
     <div class="gpick-accounts">
       <div class="gpick-acct" onclick="doGoogleSelect('Jane Smith','jane.smith@gmail.com','#1a73e8')">
         <div class="gpick-avatar" style="background:#1a73e8;">J</div>
-        <div class="gpick-info"><div class="gname">Jane Smith</div><div class="gemail"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f59f949b90db86989c819db59298949c99db969a98">[email&#160;protected]</a></div></div>
+        <div class="gpick-info"><div class="gname">Jane Smith</div><div class="gemail"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="0e646f606b207d63677a664e69636f6762206d6163">[email&#160;protected]</a></div></div>
       </div>
       <div class="gpick-acct" onclick="doGoogleSelect('J. Smith Work','j.smith@futureanalytics.io','#34a853')">
         <div class="gpick-avatar" style="background:#34a853;">J</div>
-        <div class="gpick-info"><div class="gname">J. Smith Work</div><div class="gemail"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="7d17530e101409153d1b0809080f181c131c110409141e0e531412">[email&#160;protected]</a></div></div>
+        <div class="gpick-info"><div class="gname">J. Smith Work</div><div class="gemail"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="bdd793ced0d4c9d5fddbc8c9c8cfd8dcd3dcd1c4c9d4dece93d4d2">[email&#160;protected]</a></div></div>
       </div>
     </div>
     <div class="gpick-alt"><button onclick="doGoogleSelect('','','')" style="color:#1a73e8;">&#43; Use another account</button></div>
@@ -1222,7 +1233,7 @@ tr:last-child td{border-bottom:0;}
     <button class="mclose" onclick="closeM('m-nominate')">&#10005;</button>
     <h2>Nominate a company</h2>
     <p class="msub">Can't find the company you're looking for? Let us know &mdash; nominations help us prioritise new coverage.</p>
-    <div class="field"><label>Company name</label><input type="text" placeholder="e.g. Smith Construction Ltd"/></div>
+    <div class="field"><label>Company name</label><input type="text" id="nominateCompanyName" placeholder="e.g. Smith Construction Ltd"/></div></div>
     <div class="field"><label>Companies House number (if known)</label><input type="text" placeholder="e.g. 01234567"/></div>
     <div class="field"><label>Your email (optional &mdash; we'll notify you when covered)</label><input type="email" placeholder="you@company.com"/></div>
     <button class="btnp" onclick="closeM('m-nominate');alert('Thank you \u2014 your nomination has been submitted.');">Submit nomination</button>
@@ -1430,11 +1441,23 @@ function showPanel(name){
 function portalDoSearch(){
   const raw=document.getElementById('portalSearch').value.trim();
   const res=document.getElementById('portalSearchResult');
+  const noRes=document.getElementById('portalNoResult');
+  const hit=document.getElementById('portalHitResult');
   if(!raw){res.style.display='none';return;}
   const q=raw.toLowerCase();
-  const hit=known.some(c=>q.includes(c)||c.trim().includes(q));
-  if(!hit){res.style.display='none';alert('No company in the data set matches "'+raw+'". Try ABC Holdings, Tesco or Balfour.');return;}
+  const found=known.some(c=>q.includes(c)||c.trim().includes(q));
   res.style.display='block';
+  if(!found){
+    noRes.style.display='block';
+    hit.style.display='none';
+    document.getElementById('portalNrQuery').textContent=raw;
+    // pre-fill nominate modal company name
+    const nom=document.getElementById('nominateCompanyName');
+    if(nom)nom.value=raw;
+    return;
+  }
+  noRes.style.display='none';
+  hit.style.display='block';
 }
 
 /* ----- auth -> portal ----- */
