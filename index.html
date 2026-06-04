@@ -196,6 +196,28 @@ html,body{font-family:'Inter',sans-serif;font-size:15px;color:var(--ink);backgro
 .chki label a{color:var(--gold);text-decoration:underline;}
 .reqstar{color:var(--red);}
 .field-error{display:block;font-size:11.5px;color:var(--red);margin-top:5px;min-height:16px;}
+/* Google button */
+.btn-google{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:11px 16px;background:#fff;border:1.5px solid #dadce0;border-radius:4px;font-size:14px;font-weight:500;color:#3c4043;cursor:pointer;transition:background .15s,box-shadow .15s;font-family:'Inter',sans-serif;margin-bottom:4px;}
+.btn-google:hover{background:#f8f9fa;box-shadow:0 1px 4px rgba(0,0,0,.12);}
+.mdiv-or{display:flex;align-items:center;gap:12px;margin:18px 0;font-size:12px;color:var(--inkmute);}
+.mdiv-or::before,.mdiv-or::after{content:'';flex:1;height:1px;background:var(--rule);}
+/* Google picker modal */
+#m-google-picker .modal{max-width:400px;padding:0;overflow:hidden;border-radius:8px;}
+.gpick-head{background:#fff;padding:28px 28px 18px;border-bottom:1px solid #e8eaed;}
+.gpick-head h3{font-size:16px;font-weight:400;color:#202124;margin-bottom:4px;font-family:'Inter',sans-serif;}
+.gpick-head p{font-size:13px;color:#5f6368;}
+.gpick-accounts{background:#fff;padding:8px 0;}
+.gpick-acct{display:flex;align-items:center;gap:14px;padding:12px 24px;cursor:pointer;transition:background .12s;}
+.gpick-acct:hover{background:#f8f9fa;}
+.gpick-avatar{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:16px;color:#fff;flex-shrink:0;}
+.gpick-info .gname{font-size:14px;color:#202124;font-family:'Inter',sans-serif;}
+.gpick-info .gemail{font-size:13px;color:#5f6368;}
+.gpick-alt{padding:14px 24px;border-top:1px solid #e8eaed;}
+.gpick-alt button{background:none;border:none;color:#1a73e8;font-size:13px;cursor:pointer;font-family:'Inter',sans-serif;padding:0;}
+.gpick-alt button:hover{text-decoration:underline;}
+.gpick-footer{background:#f8f9fa;border-top:1px solid #e8eaed;padding:12px 24px;display:flex;gap:20px;}
+.gpick-footer a{font-size:11px;color:#5f6368;cursor:pointer;}
+.gpick-footer a:hover{text-decoration:underline;}
 .captcha{border:1.5px solid var(--rulestr);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;background:var(--paper2);}
 .capleft{display:flex;align-items:center;gap:12px;}
 .capleft input[type=checkbox]{width:20px;height:20px;accent-color:var(--navy);cursor:pointer;}
@@ -770,7 +792,7 @@ tr:last-child td{border-bottom:0;}
               <span class="lockbadge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="9" rx="1"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Paid feature</span>
               <h4>The full 6-page report</h4>
               <p>Pillar breakdown, historical scores and red-flag analysis — generated instantly.</p>
-              <button class="lockcta" onclick="event.stopPropagation();openM('m-report')">Purchase report &mdash; &pound;29</button>
+              <button class="lockcta" onclick="event.stopPropagation();openM('m-report')">Purchase report &mdash; &pound;79</button>
             </div>
           </div>
         </div>
@@ -816,7 +838,7 @@ tr:last-child td{border-bottom:0;}
           <div class="acctcard">
             <h3>Profile</h3>
             <div class="acctrow"><span class="k">Name</span><span class="v" id="acctName">Jane Smith</span></div>
-            <div class="acctrow"><span class="k">Email</span><span class="v" id="acctEmail"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="751f141b1035161a1805141b0c5b161a18">[email&#160;protected]</a></span></div>
+            <div class="acctrow"><span class="k">Email</span><span class="v" id="acctEmail"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="503a313e3510333f3d20313e297e333f3d">[email&#160;protected]</a></span></div>
             <div class="acctrow"><span class="k">Member since</span><span class="v">June 2026</span></div>
           </div>
           <div class="acctcard">
@@ -1053,6 +1075,12 @@ tr:last-child td{border-bottom:0;}
     <h2>Create your free account</h2>
     <p class="msub">Search and monitor <span class="hl">1 company free</span>. No payment required.</p>
 
+    <button class="btn-google" onclick="doGoogleAuth()">
+      <svg width="18" height="18" viewBox="0 0 18 18"><path fill="#4285F4" d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844c-.209 1.125-.843 2.078-1.796 2.717v2.258h2.908c1.702-1.567 2.684-3.874 2.684-6.615z"/><path fill="#34A853" d="M9 18c2.43 0 4.467-.806 5.956-2.18l-2.908-2.259c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332A8.997 8.997 0 0 0 9 18z"/><path fill="#FBBC05" d="M3.964 10.71A5.41 5.41 0 0 1 3.682 9c0-.593.102-1.17.282-1.71V4.958H.957A8.996 8.996 0 0 0 0 9c0 1.452.348 2.827.957 4.042l3.007-2.332z"/><path fill="#EA4335" d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0A8.997 8.997 0 0 0 .957 4.958L3.964 6.29C4.672 4.163 6.656 3.58 9 3.58z"/></svg>
+      Continue with Google
+    </button>
+    <div class="mdiv-or">or</div>
+
     <div id="regPrev" style="display:none;margin-bottom:22px;">
       <div class="sprev">
         <div class="coico">A</div>
@@ -1083,6 +1111,7 @@ tr:last-child td{border-bottom:0;}
     <p style="font-size:11px;color:var(--inkmute);margin-bottom:16px;"><span class="reqstar">*</span> Required fields for compliance and account creation.</p>
     <button class="btnp" onclick="doRegister()">Create free account</button>
     <div class="mswitch">Already have an account? <a onclick="swapM('m-register','m-login')">Sign in</a></div>
+    <div class="mswitch" style="margin-top:8px;">Or <a onclick="doGoogleAuth()">continue with Google</a></div>
   </div>
 </div>
 
@@ -1094,11 +1123,43 @@ tr:last-child td{border-bottom:0;}
     <button class="mclose" onclick="closeM('m-login')">&#10005;</button>
     <h2>Welcome back</h2>
     <p class="msub">Sign in to access your free signal and saved companies.</p>
+    <button class="btn-google" onclick="doGoogleAuth()">
+      <svg width="18" height="18" viewBox="0 0 18 18"><path fill="#4285F4" d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844c-.209 1.125-.843 2.078-1.796 2.717v2.258h2.908c1.702-1.567 2.684-3.874 2.684-6.615z"/><path fill="#34A853" d="M9 18c2.43 0 4.467-.806 5.956-2.18l-2.908-2.259c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332A8.997 8.997 0 0 0 9 18z"/><path fill="#FBBC05" d="M3.964 10.71A5.41 5.41 0 0 1 3.682 9c0-.593.102-1.17.282-1.71V4.958H.957A8.996 8.996 0 0 0 0 9c0 1.452.348 2.827.957 4.042l3.007-2.332z"/><path fill="#EA4335" d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0A8.997 8.997 0 0 0 .957 4.958L3.964 6.29C4.672 4.163 6.656 3.58 9 3.58z"/></svg>
+      Continue with Google
+    </button>
+    <div class="mdiv-or">or</div>
     <div class="field"><label>Email address</label><input type="email" id="loginEmail" placeholder="you@company.com" oninput="clearFieldError('loginEmail')"/><span class="field-error" id="loginEmailErr"></span></div>
     <div class="field"><label>Password</label><input type="password" placeholder="Your password"/></div>
-    <button class="btnp" style="margin-bottom:12px;" onclick="doLogin()">Sign in</button>
-    <button class="btns" onclick="doLogin()">Continue with Google</button>
+    <button class="btnp" onclick="doLogin()">Sign in</button>
     <div class="mswitch">Don't have an account? <a onclick="swapM('m-login','m-register')">Sign up free</a></div>
+  </div>
+</div>
+
+<!-- ======================================================= -->
+<!-- MODAL: GOOGLE ACCOUNT PICKER -->
+<!-- ======================================================= -->
+<div class="mover" id="m-google-picker">
+  <div class="modal" style="max-width:400px;padding:0;overflow:hidden;border-radius:8px;">
+    <div class="gpick-head">
+      <svg width="74" height="24" viewBox="0 0 74 24" style="margin-bottom:14px;"><path d="M9.24 8.19v2.46h5.88c-.18 1.38-.64 2.39-1.34 3.1-.86.86-2.2 1.8-4.54 1.8-3.62 0-6.45-2.92-6.45-6.54s2.83-6.54 6.45-6.54c1.95 0 3.38.77 4.43 1.76L15.4 2.5C13.94 1.08 11.98 0 9.24 0 4.28 0 .11 4.04.11 9s4.17 9 9.13 9c2.68 0 4.7-.88 6.28-2.52 1.62-1.62 2.13-3.91 2.13-5.75 0-.57-.04-1.1-.13-1.54H9.24z" fill="#4285F4"/><path d="M25 6.19c-3.21 0-5.83 2.44-5.83 5.81 0 3.34 2.62 5.81 5.83 5.81s5.83-2.46 5.83-5.81c0-3.37-2.62-5.81-5.83-5.81zm0 9.33c-1.76 0-3.28-1.45-3.28-3.52 0-2.09 1.52-3.52 3.28-3.52s3.28 1.43 3.28 3.52c0 2.07-1.52 3.52-3.28 3.52z" fill="#EA4335"/><path d="M53.58 7.49h-.09c-.57-.68-1.67-1.3-3.06-1.3C47.53 6.19 45 8.72 45 12c0 3.26 2.53 5.81 5.43 5.81 1.39 0 2.49-.62 3.06-1.32h.09v.83c0 2.22-1.19 3.41-3.1 3.41-1.56 0-2.53-1.12-2.93-2.07l-2.22.92c.64 1.54 2.33 3.43 5.15 3.43 2.99 0 5.52-1.76 5.52-6.05V6.49h-2.42v1zm-2.93 8.03c-1.76 0-3.1-1.5-3.1-3.52 0-2.05 1.34-3.52 3.1-3.52 1.74 0 3.1 1.5 3.1 3.54-.01 2.03-1.36 3.5-3.1 3.5z" fill="#4285F4"/><path d="M38 6.19c-3.21 0-5.83 2.44-5.83 5.81 0 3.34 2.62 5.81 5.83 5.81s5.83-2.46 5.83-5.81c0-3.37-2.62-5.81-5.83-5.81zm0 9.33c-1.76 0-3.28-1.45-3.28-3.52 0-2.09 1.52-3.52 3.28-3.52s3.28 1.43 3.28 3.52c0 2.07-1.52 3.52-3.28 3.52z" fill="#FBBC05"/><path d="M58 .24h2.51v17.57H58z" fill="#34A853"/><path d="M68.26 15.52c-1.3 0-2.22-.59-2.82-1.76l7.77-3.21-.26-.66c-.48-1.3-1.96-3.7-4.97-3.7-2.99 0-5.48 2.35-5.48 5.81 0 3.26 2.46 5.81 5.76 5.81 2.66 0 4.2-1.63 4.84-2.57l-1.98-1.32c-.66.96-1.56 1.6-2.86 1.6zm-.18-7.15c1.03 0 1.91.53 2.2 1.28l-5.25 2.17c0-2.44 1.73-3.45 3.05-3.45z" fill="#EA4335"/></svg>
+      <h3>Sign in with Google</h3>
+      <p>Choose an account to continue to Commercial Trust Index</p>
+    </div>
+    <div class="gpick-accounts">
+      <div class="gpick-acct" onclick="doGoogleSelect('Jane Smith','jane.smith@gmail.com','#1a73e8')">
+        <div class="gpick-avatar" style="background:#1a73e8;">J</div>
+        <div class="gpick-info"><div class="gname">Jane Smith</div><div class="gemail"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f59f949b90db86989c819db59298949c99db969a98">[email&#160;protected]</a></div></div>
+      </div>
+      <div class="gpick-acct" onclick="doGoogleSelect('J. Smith Work','j.smith@futureanalytics.io','#34a853')">
+        <div class="gpick-avatar" style="background:#34a853;">J</div>
+        <div class="gpick-info"><div class="gname">J. Smith Work</div><div class="gemail"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="7d17530e101409153d1b0809080f181c131c110409141e0e531412">[email&#160;protected]</a></div></div>
+      </div>
+    </div>
+    <div class="gpick-alt"><button onclick="doGoogleSelect('','','')" style="color:#1a73e8;">&#43; Use another account</button></div>
+    <div class="gpick-footer">
+      <a>Privacy Policy</a>
+      <a>Terms of Service</a>
+    </div>
   </div>
 </div>
 
@@ -1113,13 +1174,13 @@ tr:last-child td{border-bottom:0;}
     <div class="pwtiers">
       <div class="pwt" onclick="closeM('m-paywall');openM('m-report')">
         <h4>Company Report</h4><div class="pwtsub">One-off purchase</div>
-        <div class="pwtprice">&pound;29<span style="font-size:14px;color:var(--inkmute)">.00</span></div>
+        <div class="pwtprice">&pound;79<span style="font-size:14px;color:var(--inkmute)">.00</span></div>
         <div class="pwtper">per report</div>
         <ul class="pwtfeats"><li>Full pillar breakdown</li><li>Historical scores</li><li>Red flag analysis</li><li>PDF download</li></ul>
       </div>
       <div class="pwt pwf" onclick="demoUpsell()">
         <h4>Subscription</h4><div class="pwtsub">Best for monitoring</div>
-        <div class="pwtprice" style="color:var(--goldsf)">&pound;99</div>
+        <div class="pwtprice" style="color:var(--goldsf)">&pound;49</div>
         <div class="pwtper">per month</div>
         <ul class="pwtfeats"><li>Unlimited companies</li><li>Portfolio dashboard</li><li>Score change alerts</li><li>Unlimited reports</li></ul>
       </div>
@@ -1139,7 +1200,7 @@ tr:last-child td{border-bottom:0;}
     <div style="background:var(--paper2);border:1px solid var(--rule);padding:18px;margin-bottom:22px;">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
         <span style="font-size:14px;">ABC Holdings Ltd &mdash; Apr&ndash;Jun 2024</span>
-        <span style="font-family:'Fraunces',serif;font-size:20px;font-weight:600;color:var(--navy);">&pound;29.00</span>
+        <span style="font-family:'Fraunces',serif;font-size:20px;font-weight:600;color:var(--navy);">&pound;79.00</span>
       </div>
       <div style="font-size:12px;color:var(--inkmute);">6-page PDF &middot; Instant delivery &middot; CTI v1.5</div>
     </div>
@@ -1148,7 +1209,7 @@ tr:last-child td{border-bottom:0;}
       <div class="field"><label>Expiry</label><input type="text" placeholder="MM / YY"/></div>
       <div class="field"><label>CVV</label><input type="text" placeholder="&bull;&bull;&bull;"/></div>
     </div>
-    <button class="btnp btng" onclick="demoUpsell()">Pay &pound;29.00 &mdash; Download report</button>
+    <button class="btnp btng" onclick="demoUpsell()">Pay &pound;79.00 &mdash; Download report</button>
     <p style="font-size:11px;color:var(--inkmute);text-align:center;margin-top:12px;">Secured by Stripe &middot; UK GDPR compliant</p>
   </div>
 </div>
@@ -1316,7 +1377,7 @@ function showView(n){
   updateLabel();
   window.scrollTo({top:0,behavior:'instant'});
 }
-const AUTH_MODALS = ['m-login','m-register','m-searchgate'];
+const AUTH_MODALS = ['m-login','m-register','m-searchgate','m-google-picker'];
 function openM(id){
   const el=document.getElementById(id);
   if(!el)return;
@@ -1413,6 +1474,21 @@ function doRegister(){
   closeM('m-register');
   enterPortal();
 }
+function doGoogleAuth(){
+  // Close whichever auth modal is open, show the picker
+  ['m-login','m-register','m-searchgate'].forEach(m=>{
+    const el=document.getElementById(m);
+    if(el&&el.classList.contains('open'))el.dataset.googleFrom=m;
+  });
+  openM('m-google-picker');
+}
+function doGoogleSelect(name,email,color){
+  // Close all auth modals first
+  ['m-login','m-register','m-searchgate','m-google-picker'].forEach(m=>closeM(m));
+  if(name) S.name=name;
+  if(email) document.getElementById('acctEmail').textContent=email;
+  setTimeout(()=>enterPortal(),300);
+}
 function doLogin(){
   const e=document.getElementById('loginEmail').value.trim();
   if(!e){showFieldError('loginEmail','Please enter your email address.');return;}
@@ -1480,7 +1556,7 @@ function answerFor(q){
   if(s.includes('free'))return "Your free plan includes the public CTI signal — score, risk band, trend and risk indicator — for any company, plus 1 saved company on your watchlist. Full reports, history and portfolio tools are paid features.";
   if(s.includes('report'))return "A full Company Report is a six-page document: cover, executive summary, pillar breakdown, trend &amp; movement, red-flag section and methodology summary. It's a paid feature — <a onclick=\"closeChat();openM('m-report')\">purchase one for &pound;29</a>.";
   if(s.includes('score')||s.includes('calcul')||s.includes('method'))return "CTI scores are built from UK statutory payment reporting data using a fixed, version-controlled rule set (CTI v1.5). No subjective opinion is applied. See the <a onclick=\"closeChat();showPanel('methodology')\">Methodology page</a> for detail.";
-  if(s.includes('cost')||s.includes('price')||s.includes('pay')||s.includes('much'))return "The free plan is free forever. A one-off Company Report is &pound;29. The subscription is &pound;99/month for unlimited companies, portfolio analytics and alerts. <a onclick=\"closeChat();openM('m-paywall')\">View plans</a>.";
+  if(s.includes('cost')||s.includes('price')||s.includes('pay')||s.includes('much'))return "The free plan is free forever. A one-off Company Report is &pound;79. The subscription is &pound;49/month for unlimited companies, portfolio analytics and alerts. <a onclick=\"closeChat();openM('m-paywall')\">View plans</a>.";
   if(s.includes('alert')||s.includes('monitor'))return "Alerts are a subscriber feature. They fire when a red flag is triggered, a score moves beyond a threshold, or a risk band changes — across every company on your watchlist.";
   if(s.includes('watchlist'))return "On the free plan you can save 1 company to your watchlist. Subscribers get an unlimited watchlist with live trend and indicator tracking.";
   if(s.includes('cover')||s.includes('which compan'))return "CTI covers UK companies required to report payment practices under statutory regulations — typically larger organisations. If one isn't covered, you can nominate it.";
